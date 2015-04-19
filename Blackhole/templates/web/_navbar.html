@@ -1,0 +1,168 @@
+{% load staticfiles %}
+{% load i18n %}
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static "img/Black-hole-small.png" %}"></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <strong>{% trans 'Welcome' %}, {{ user }} </strong><i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="{% url 'django.contrib.auth.views.logout' %}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-gears fa-fw"></i> {% trans 'Admin' %}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                {% if perms.auth.add_user %}
+                                <li>
+                                    <a href="{% url 'admin_user_create' %}"><span class="fa fa-caret-right"></span> {% trans 'Create' %} {% trans 'User' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'admin_user_list' %}"><span class="fa fa-caret-right"></span> {% trans 'List' %} {% trans 'Users' %}</a>
+                                </li>
+                                {% endif %}
+                                {% if perms.auth.add_group %}
+                                <li>
+                                    <a href="{% url 'group_create' %}"><span class="fa fa-caret-right"></span> {% trans 'Create' %} {% trans 'Group' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'group_list' %}"><span class="fa fa-caret-right"></span> {% trans 'List' %} {% trans 'Groups' %}</a>
+                                </li>
+                                {% endif %}
+                                {% if user.is_superuser %}
+                                    <li>
+                                        <a href="{% url 'admin:index' %}" target="_blank"><span class="fa fa-caret-right"></span> Admin Web</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-group fa-fw"></i> {% trans 'Users' %}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                {% if perms.web.add_appuser %}
+                                <li>
+                                    <a href="{% url 'app_user_create' %}"><i class="fa fa-user fa-fw"></i> {% trans 'Create' %} {% trans 'User' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'app_user_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'Users' %}</a>
+                                </li>
+                                {% endif %}
+                                {% if perms.web.add_profile %}
+                                <li>
+                                    <a href="{% url 'profile_create' %}"><i class="fa fa-group fa-fw"></i> {% trans 'Create' %} {% trans 'Profile' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'profile_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'Profiles' %}</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-desktop fa-fw"></i> {% trans 'Hosts' %}, {% trans 'DB' %} {% trans 'and' %} {% trans 'environments' %}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                {% if perms.web.add_host %}
+                                <li>
+                                    <a href="{% url 'host_create' %}"><i class="fa fa-desktop fa-fw"></i> {% trans 'Create' %} {% trans 'Host' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'host_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'Hosts' %}</a>
+                                </li>
+                                {% endif %}
+                                {% if perms.web.add_database %}
+                                <li>
+                                    <a href="{% url 'db_create' %}"><i class="fa fa-database fa-fw"></i> {% trans 'Create' %} {% trans 'Database' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'db_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'Databases' %}</a>
+                                </li>
+                                {% endif %}
+                                {% if perms.web.add_environment %}
+                                <li>
+                                    <a href="{% url 'environment_create' %}"><i class="fa fa-archive fa-fw"></i> {% trans 'Create' %} {% trans 'Environment' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'environment_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'Environments' %}</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-key fa-fw"></i> {% trans 'Authentication' %}<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                {% if perms.web.add_useridentity %}
+                                <li>
+                                    <a href="{% url 'user_identity_create' %}"><i class="fa fa-user-plus fa-fw"></i> {% trans 'Create' %} {% trans 'User Identity' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user_identity_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'User Identities' %}</a>
+                                </li>
+                                {% endif %}
+                                {% if perms.web.add_privatekey %}
+                                <li>
+                                    <a href="{% url 'privatekey_create' %}"><i class="fa fa-key fa-fw"></i> {% trans 'Create' %} {% trans 'Private Key' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'privatekey_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'Private Key' %}</a>
+                                </li>
+                                {% endif %}
+                                {% if perms.web.add_hostconnection %}
+                                <li>
+                                    <a href="{% url 'hostConnection_create' %}"><i class="fa fa-desktop fa-fw"></i> {% trans 'Create' %} {% trans 'Host Connection' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'hostConnection_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'Host Connection' %}</a>
+                                </li>
+                                {% endif %}
+                              {% if perms.web.add_dbconnection %}
+                                <li>
+                                    <a href="{% url 'dbConnection_create' %}"><i class="fa fa-database fa-fw"></i> {% trans 'Create' %} {% trans 'Database Connection' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'dbConnection_list' %}"><i class="fa fa-list fa-fw"></i> {% trans 'List' %} {% trans 'Database Connection' %}</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        {% if perms.web.view_session_logs %}
+                        <li>
+                            <a href="{% url 'active_sessions' %}"><i class="fa fa-eye fa-fw"></i> {% trans 'Active Sessions' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'find_sessionlog' %}"><i class="fa fa-calendar fa-fw"></i> {% trans 'Find Session Logs' %}</a>
+                        </li>
+                        {% endif %}
+
+
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                    <!-- /#side-menu -->
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>

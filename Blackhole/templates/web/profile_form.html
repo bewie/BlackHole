@@ -1,0 +1,35 @@
+{% extends "web/base.html" %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% block title %}{% trans 'Create' %} {% trans 'profile' %}{% endblock %}
+
+{% block extra_js %}
+    <script type="application/javascript">
+    function showModalDialog(link){
+        $('#delete_modal').modal({remote:link});
+    }
+    jQuery.each($("select[multiple]"), function () {
+     label = $(this).attr("name");
+     SelectFilter.init(this.id, label, true, "{{ STATIC_URL }}");
+    });
+    </script>
+{% endblock %}
+
+{% block main_content %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{% trans 'Create' %} {% trans 'profile' %}</h1>
+                </div>
+            <div class="col-lg-5">
+                <form action="" method="post" class="form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-primary">
+                            {% bootstrap_icon "ok-circle" %} {% trans 'Create' %}
+                        </button>
+                    {% endbuttons %}
+                </form>
+            </div>
+            </div>
+{% endblock %}

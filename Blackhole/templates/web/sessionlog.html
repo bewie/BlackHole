@@ -1,0 +1,104 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="{% static "js/jquery-1.10.2.js"  %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script type="application/javascript">
+</script>
+<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+<link href="{% static "css/session_log.css" %}" rel="stylesheet">
+
+<title>{% trans 'Session of the user' %}:  {{ object.user.username }}</title>
+</head>
+{% block extra_js %}
+    <script type="application/javascript">
+    function get_session_log(auto_scroll){
+        $.ajax({
+            url: "{% url 'view_session_log_ws' %}",
+            data: {session_log_id: {{ object.id }} }
+        }).done(function(data){
+            session_log_div = $("#session_log");
+            session_log_div.empty();
+            session_log_div.append(data);
+            if (auto_scroll == true){
+              window.scrollTo(0,document.body.scrollHeight);
+            }
+        });
+    }
+
+    $(function(){
+        get_session_log(false);
+        var refresh_timer;
+        var refresh_on = false;
+{#        $('.btn-toggle').click(function() {#}
+{#            $(this).find('.btn').toggleClass('active');#}
+{#            if ($(this).find('.btn-primary').size()>0) {#}
+{#                $(this).find('.btn').toggleClass('btn-primary');#}
+{#            }#}
+{#            $(this).find('.btn').toggleClass('btn-default');#}
+{#        });#}
+        $('#refresh_on').click(function(){
+            if (refresh_on == false){
+                refresh_on = true;
+                $(this).toggleClass('btn-primary');
+                $('#refresh_off').toggleClass('btn-default').toggleClass('btn-primary', false);
+                refresh_timer = setInterval("get_session_log(true)", 7000);
+            }
+        });
+        $('#refresh_off').click(function(){
+            if (refresh_on == true){;
+                refresh_on = false
+                $(this).toggleClass('btn-primary');
+                $('#refresh_on').toggleClass('btn-default').toggleClass('btn-primary', false);
+                clearInterval(refresh_timer);
+            }
+        });
+
+    })
+    </script>
+{% endblock %}
+
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">BlackHole <img src="{% static "img/Black-hole-small.png" %}"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li>
+              <p class="navbar-text">Auto-Refresh</p>
+              <div class="btn-group btn-group-sm btn-toggle navbar-btn">
+                  <button id="refresh_on" class="btn btn-default">ON</button>
+                  <button id="refresh_off" class="btn btn-primary">OFF</button>
+              </div>
+              <div class="btn-group navbar-btn btn-group-sm">
+                  <a type="button" class="btn btn-default" href="{% url 'download_session_log' object.id %}">{% trans 'Download' %}</a>
+              </div>
+          </li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<pre>
+<div id="session_log" class="body_foreground body_background">
+{#{{ log_data|safe }}#}
+</div>
+</pre>
+
+</body>
+
+</html>

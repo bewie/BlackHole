@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+{% load i18n %}
+{% block title %}BlackHole{% endblock %}
+{% block content %}
+    <div id="wrapper">
+    {% include "web/_navbar.html" %}
+         <div id="page-wrapper">
+            {% block main_content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

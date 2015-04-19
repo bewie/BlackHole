@@ -1,0 +1,36 @@
+{% extends "web/_update.html" %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% block title %}{% trans 'Update' %} {% trans 'user' %}{% endblock %}
+
+{% block extra_js %}
+    <script type="application/javascript">
+    function showModalDialog(link){
+        $('#delete_modal').modal({remote:link});
+    }
+    jQuery.each($("select[multiple]"), function () {
+     label = $(this).parent().find("label").html();
+     SelectFilter.init(this.id, label, true, "{{ STATIC_URL }}");
+    });
+    </script>
+{% endblock %}
+
+{% block update_form     %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{% trans 'Update' %} {% trans 'user' %}</h1>
+                </div>
+            <div class="col-lg-5">
+                <form action="" method="post" class="form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-success">
+                            {% bootstrap_icon "ok-circle" %} {% trans 'Update' %}
+                        </button>
+                        <a href="{% url 'app_user_list' %}" class="btn btn-primary">{% bootstrap_icon "remove-circle" %} {% trans 'Cancel' %}</a>
+                    {% endbuttons %}
+                </form>
+            </div>
+            </div>
+{% endblock %}

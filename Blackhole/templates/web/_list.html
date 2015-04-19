@@ -1,0 +1,20 @@
+{% extends "web/base.html" %}
+{% load i18n %}
+{% block extra_js %}
+    <script type="application/javascript">
+    function showModalDialog(link){
+        $('#delete_modal').modal({remote:link});
+    }
+    </script>
+{% endblock %}
+
+{% block main_content %}
+    {% block list_table %}
+    {% endblock %}
+    <div id="delete_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+{% endblock %}

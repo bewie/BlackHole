@@ -1,0 +1,50 @@
+{% extends "web/_update.html" %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% block title %}{% trans 'Update' %} {% trans 'host connection' %}{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script type="application/javascript">
+    function validate_authentication_method(event){
+        authentication_method = $('#id_authentication_method').val();
+        if (authentication_method == 'PASSWORD'){
+            if ($('#id_password').val() == ""){
+                $('#id_password').parent().addClass('has-error');
+                $('#password_error_message').html('Add password');
+                event.preventDefault();
+            }
+        }else{
+            if ($('#id_password').val() != ""){
+               $('#id_password').parent().addClass('has-error');
+               $('#password_error_message').html('Remove Password for Private Key');
+               event.preventDefault();
+            }
+        }
+    }
+    $('#id_password').after('<span class="help-block" id="password_error_message"></span>');
+    $('#id_password').attr('type', 'password');
+    $('#create_form').submit(validate_authentication_method);
+    </script>
+{% endblock %}
+
+{% block update_form %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{% trans 'Update' %} {% trans 'host connection' %}</h1>
+                </div>
+            <div class="col-lg-5">
+                <form action="" method="post" class="form" id="create_form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-success">
+                            {% bootstrap_icon "ok-circle" %} {% trans 'Update' %}
+                        </button>
+                        <a href="{% url 'hostConnection_list' %}" class="btn btn-primary">{% bootstrap_icon "remove-circle" %} {% trans 'Cancel' %}</a>
+                        <span class="btn btn-danger" onclick="showModalDialog('{% url 'hostConnection_delete' object.id %}')"><i class="fa fa-trash-o fa-fw"></i> {% trans 'Delete' %}</span>
+                    {% endbuttons %}
+                </form>
+            </div>
+            </div>
+{% endblock %}

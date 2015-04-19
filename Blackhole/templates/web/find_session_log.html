@@ -1,0 +1,69 @@
+{% extends "web/base.html" %}
+{% load bootstrap3 staticfiles %}
+{% load i18n %}
+{% block title %}{% trans 'Search Session Logs' %}{% endblock %}
+
+{% block extra_css %}
+    <link href="{% static "css/jquery.datetimepicker.css" %}" rel="stylesheet">
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static  "js/jquery.datetimepicker.js" %}"></script>
+    <script type="application/javascript">
+        $(function(){
+            jQuery('.datePicker').datetimepicker({timepicker:false, format:'d/m/Y'});
+        });
+    </script>
+{% endblock %}
+
+{% block main_content %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{% trans 'Search Session Logs' %}</h1>
+                </div>
+            </div>
+
+    {% if form %}
+        <div class="col-lg-5">
+        <form action="" method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "ok-circle" %} {% trans 'Search' %}
+                </button>
+            {% endbuttons %}
+        </form>
+        </div>
+    {% endif %}
+    {% if session_logs %}
+        <div class="col-lg-12">
+        <table class="table table-condesed">
+            <thead>
+            <tr>
+                <th>{% trans 'user' %}</th>
+                <th>{% trans 'host' %}</th>
+                <th>{% trans 'type' %}</th>
+                <th>{% trans 'login date' %}</th>
+                <th>{% trans 'logout date' %}</th>
+                <th>{% trans 'from' %}</th>
+                <th>{% trans 'download' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for session_log in session_logs %}
+                <tr>
+                    <td>{{ session_log.user.get_full_name }}</td>
+                    <td>{{ session_log.host }}</td>
+                    <td>{{ session_log.session_type }}</td>
+                    <td>{{ session_log.login_date }}</td>
+                    <td>{{ session_log.logout_date }}</td>
+                    <td>{{ session_log.source_ip }}</td>
+                    <td><a type="button" class="btn btn-default btn-sm" href="{% url 'download_session_log' session_log.id %}"><i class="fa fa-cloud-download fa-fw"></i> </a></td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}

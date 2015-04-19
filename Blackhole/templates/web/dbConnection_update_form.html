@@ -1,0 +1,33 @@
+{% extends "web/_update.html" %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% block title %}{% trans 'Update' %} {% trans 'database connection' %}{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script type="application/javascript">
+    $('#id_password').after('<span class="help-block" id="password_error_message"></span>');
+    $('#id_password').attr('type', 'password');
+    </script>
+{% endblock %}
+
+{% block update_form %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">{% trans 'Update' %} {% trans 'database connection' %}</h1>
+                </div>
+            <div class="col-lg-5">
+                <form action="" method="post" class="form" id="create_form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-success">
+                            {% bootstrap_icon "ok-circle" %} {% trans 'Update' %}
+                        </button>
+                        <a href="{% url 'dbConnection_list' %}" class="btn btn-primary">{% bootstrap_icon "remove-circle" %} {% trans 'Cancel' %}</a>
+                        <span class="btn btn-danger" onclick="showModalDialog('{% url 'dbConnection_delete' object.id %}')"><i class="fa fa-trash-o fa-fw"></i> {% trans 'Delete' %}</span>
+                    {% endbuttons %}
+                </form>
+            </div>
+            </div>
+{% endblock %}

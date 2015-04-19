@@ -1,0 +1,30 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BlackHole | {% block title %}Title{% endblock %}</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/blackhole-admin.css" %}" rel="stylesheet">
+    <link href="{% static "css/multiple_select.css" %}" rel="stylesheet">
+    <link href="{% static "css/jquery-ui.min.css" %}" rel="stylesheet">
+    {% block extra_css %}
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static "js/jquery-1.10.2.js"  %}"></script>
+    <script src="{% static "js/jquery-ui.min.js"  %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static  "js/django-admin.multiselect.js" %}"></script>
+    <script src="{% static "js/plugins/metisMenu/jquery.metisMenu.js" %}"></script>
+    <script src="{% static  "js/sb-admin.js" %}"></script>
+
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,9 @@
+Django==1.6.10
+django-bootstrap3==5.3.1
+django-selectable==0.9.0
+django-widget-tweaks==1.3
+#MySQL-python==1.2.5
+paramiko==1.15.2
+pytz==2014.10
+redis==2.10.3
+urwid==1.3.0

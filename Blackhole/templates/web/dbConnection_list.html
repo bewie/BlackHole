@@ -1,0 +1,51 @@
+{% extends "web/_list.html" %}
+{% load bootstrap3 %}
+{% load i18n %}
+{% block title %}{% trans 'Database Connection' %}{% endblock %}
+
+
+{% block extra_js %}
+    {{ block.super }}
+    {% include "web/_ajax_search.html" %}
+{% endblock %}
+
+{% block list_table %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{% trans 'Database Connections' %}</h1>
+        </div>
+        <div id="update-data" data-update-url="/web/db_connection/update/">
+            <div class="form-group">
+                {{ search_form.target }}
+            </div>
+        </div>
+        {% if object_list %}
+            <table class="table table-striped table-condensed">
+                <thead>
+                <tr>
+                    <th>{% trans 'Authentication User' %}</th>
+                    <th>{% trans 'Host' %}</th>
+                    <th>{% trans 'IP' %}</th>
+                    <th>{% trans 'Actions' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td>{{ object.authentication_user }}</td>
+                        <td>{{ object.host.name }}</td>
+                        <td>{{ object.host.ip }}</td>
+                        <td>
+                            <button class="btn btn-danger btn-xs" onclick="showModalDialog('{% url 'dbConnection_delete' object.id %}')"><i class="fa fa-trash-o fa-fw"></i></button>
+                            <a class="btn btn-success btn-xs" href="{% url 'dbConnection_update' object.id %}"><i class="fa fa-edit fa-fw"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if is_paginated %}
+                {% bootstrap_pagination  page_obj %}
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
