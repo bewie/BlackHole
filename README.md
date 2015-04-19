@@ -12,6 +12,8 @@ BlackHole is gonna be the only entry point for all your hosts and databases.
 
 ![BlackHole - Diagram](https://raw.githubusercontent.com/aenima-x/BlackHole/gh-pages/images/blackhole-diagram.png)
 
+You can also kill any session ongoing that you don't allow
+
 ### Keeping track.
 BlackHole gives you a web interface so you can in real time know who is connected to where.
 With the possibility of download the log file of that connection so you can see what the user is doing in it.
