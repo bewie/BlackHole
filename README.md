@@ -106,7 +106,7 @@ Here you can see how to setup BlackHole
 Software:
 - Linux
 - Python (tested on 2.6 and 2.7)
-- A database engine, int the examples I use MySQL
+- A database engine, in the examples I use MySQL
 - Redis (for store information about the active connections)
     
 Python Modules:
