@@ -10,7 +10,7 @@ It replaces the shell of the user (in the BlackHole server) giving the user only
 
 BlackHole is gonna be the only entry point for all your hosts and databases.
 
-[DIAGRAMA]
+![BlackHole - Diagram](https://raw.githubusercontent.com/aenima-x/BlackHole/gh-pages/images/blackhole-diagram.png)
 
 ### Keeping track.
 BlackHole gives you a web interface so you can in real time know who is connected to where.
