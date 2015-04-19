@@ -98,20 +98,20 @@ Here you can see how to setup BlackHole
 ### Requirements
 
 Software:
-    - Linux
-    - Python (tested on 2.6 and 2.7)
-    - A database engine, int the examples I use MySQL
-    - Redis (for store information about the active connections)
+- Linux
+- Python (tested on 2.6 and 2.7)
+- A database engine, int the examples I use MySQL
+- Redis (for store information about the active connections)
     
 Python Modules:
-    - Django (Tested with 1.6)
-    - django-bootstrap3
-    - django-selectable
-    - django-widget-tweaks
-    - paramiko
-    - urwid
-    - redis
-    - pytz
-    - (The databse engine module of your choice)
+- Django (Tested with 1.6)
+- django-bootstrap3
+- django-selectable
+- django-widget-tweaks
+- paramiko
+- urwid
+- redis
+- pytz
+- (The databse engine module of your choice)
     
  
