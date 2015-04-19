@@ -82,7 +82,7 @@ Create the database
 To run the admin site you can use the django integrated web server, but it's not recommended for production.
 
 ```Bash
-opt/BlackHole/manage.py runserver
+/opt/BlackHole/manage.py runserver
 ```
 **IMPORTANT:** Don't forget to have a redis instance running (you can set the ip or hostname un the settings.py file variable called "redis_server")
 
