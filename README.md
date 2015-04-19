@@ -1,7 +1,3 @@
-BlackHole
-
-Monitor all the ssh and sql sessions on your network: Centralized ssh/sql session logger, connections and authentication manager.
-
 # BlackHole
 
 ### What is BlackHole and what it can do?
