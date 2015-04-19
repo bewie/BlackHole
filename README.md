@@ -77,6 +77,7 @@ To run the admin site you can use the django integrated web server, but it's not
 opt/BlackHole/manage.py runserver
 ```
 **IMPORTANT:** Don't forget to have a redis instance running (you can set the ip or hostname un the settings.py file variable called "redis_server")
+
 **IMPORTANT:** The user who runs the admin site mast have permissions to access to the logs but also to kill the processes (basically must be root)
 
 You can use nginx + gunicorn or apache
@@ -84,6 +85,7 @@ You can use nginx + gunicorn or apache
 You are now ready to create users and start using it.
 
 You must set **/opt/Blackhole/launcher.py** as the shell of the users.
+
 It's recommended to disable SCP and SFTP en the server to avoid any access that its not done using BlackHole.
 Also Disable port forwarding in the sshd configuration
 
