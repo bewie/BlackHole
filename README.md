@@ -56,6 +56,7 @@ Create the database and set the configuration file
 vi /opt/BlackHole/blackhole/settings.py
 ```
 
+```
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -63,6 +64,7 @@ DATABASES = {
         'USER': 'USER',
         'PASSWORD': 'PASSWORD'
      }}
+```
 
 Define the path for the logs and set it to the "log_path" variable
 
