@@ -1,6 +1,8 @@
 # BlackHole
 
 ### What is BlackHole and what it can do?
+
+![BlackHole - terminal](https://raw.githubusercontent.com/aenima-x/BlackHole/gh-pages/images/terminal.png)
 It's a security tool to keep tracking and monitor all the ssh and sql sessions on your servers.
 You will know who is connected to where and see what they are doing in real time.
 Identify and keep track of anonymous connections that share a single user.
@@ -15,6 +17,8 @@ BlackHole is gonna be the only entry point for all your hosts and databases.
 You can also kill any session ongoing that you don't allow
 
 ### Keeping track.
+
+![BlackHole - sessions](https://raw.githubusercontent.com/aenima-x/BlackHole/gh-pages/images/sessions.png)
 BlackHole gives you a web interface so you can in real time know who is connected to where.
 With the possibility of download the log file of that connection so you can see what the user is doing in it.
 Also it stores in a database all the information about all the connections established with the targets.
