@@ -23,12 +23,12 @@ BlackHole gives you a web interface so you can in real time know who is connecte
 With the possibility of download the log file of that connection so you can see what the user is doing in it.
 Also it stores in a database all the information about all the connections established with the targets.
 Including:
-    - User
-    - Source IP
-    - Target destination
-    - User used to authenticate
-    - Login date
-    - Logout date
+- User
+- Source IP
+- Target destination
+- User used to authenticate
+- Login date
+- Logout date
     
 ### See it in action
 
