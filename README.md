@@ -89,7 +89,7 @@ Create the database
 ```
 
 
-To run the admin site you can use the django integrated web server, but it's not recommended for production.
+To run the admin site you can use the django integrated web server, but it's not recommended for production (you must set DEBUG in settings.py to True, remember set it to False in production).
 
 ```Bash
 /opt/BlackHole/manage.py runserver
