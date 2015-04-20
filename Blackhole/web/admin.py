@@ -21,12 +21,11 @@ class PrivateKeyAdmin(admin.ModelAdmin):
 
 class UserAdmin(admin.ModelAdmin):
     actions = ['disable_users', 'enable_users']
-    list_display = ('username', 'last_name', 'first_name', 'profile', 'enabled', 'last_login')
+    list_display = ('username', 'last_name', 'first_name', 'profile', 'enabled')
     search_fields = ['username', 'profile__name']
     list_filter = ('enabled', 'profile')
     filter_horizontal = ('allowed_environments',)
     ordering = ['profile__name', 'username']
-    exclude = ('last_login',)
 
     def disable_users(self, request, queryset):
         queryset.update(enabled=False)
