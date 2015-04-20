@@ -92,7 +92,7 @@ You can use nginx + gunicorn or apache
 
 You are now ready to create users and start using it.
 
-You must set **/opt/BlackHole/launcher.py** as the shell of the users.
+You must set **/opt/BlackHole/launcher.py** as the shell of the users, and don't forget to set "blackhole" as their main group.
 
 It's recommended to disable SCP and SFTP en the server to avoid any access that its not done using BlackHole.
 Also Disable port forwarding in the sshd configuration
