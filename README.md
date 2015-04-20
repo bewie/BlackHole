@@ -56,6 +56,14 @@ Set the permissions
 chown -r root:blackhole /opt/BlackHole
 ```
 
+Install the requirements
+
+```
+pip install -r requirements.txt
+```
+
+If you want to connect to databases, you must install the command line clients
+
 Create the database and set the configuration file
 
 ```Bash
