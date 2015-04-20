@@ -221,13 +221,10 @@ class AppUser(models.Model):
     description = models.CharField(max_length=20, blank=True, null=True, verbose_name=_(u"Description"))
     profile = models.ForeignKey(Profile, verbose_name=_(u"Profile"))
     enabled = models.BooleanField(default=True, verbose_name=_(u"Enabled"))
-    #log_session = models.BooleanField(default=True, verbose_name=_(u"Log Session"))
     time_range_enabled = models.BooleanField(default=False, verbose_name=_(u"Enabled in Time Range"))
     time_range_enabled_since = models.TimeField(default=(lambda: datetime.now().time().replace(second=0)), verbose_name=_(u"Since"))
     time_range_enabled_to = models.TimeField(default=(lambda: datetime.now().time().replace(second=0)), verbose_name=_(u"Until"))
     allowed_environments = models.ManyToManyField(Environment, blank=True, verbose_name=_(u"Enabled Environments"))
-    last_login = models.DateTimeField(blank=True, null=True, verbose_name=_(u"Last Login"))
-    #generateToken = models.BooleanField(default=False, verbose_name=_("Generate Token"))
 
     def get_full_name(self):
         return u"%s, %s (%s)" % (self.last_name, self.first_name, self.username)
