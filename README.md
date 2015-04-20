@@ -52,13 +52,13 @@ mv BlackHole /opt
 
 Set the permissions
 
-```
+```Bash
 chown -r root:blackhole /opt/BlackHole
 ```
 
 Install the requirements
 
-```
+```Bash
 pip install -r requirements.txt
 ```
 
@@ -84,7 +84,9 @@ Define the path for the logs and set it to the "log_path" variable
 
 Create the database
 
-```/opt/BlackHole/manage.py syncdb```
+```Bash
+/opt/BlackHole/manage.py syncdb
+```
 
 
 To run the admin site you can use the django integrated web server, but it's not recommended for production.
