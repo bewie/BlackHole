@@ -61,7 +61,6 @@ urlpatterns = patterns('',
     url(r'^session_log/search$', FindSessionLogsFormView.as_view(), name='find_sessionlog'),
     #Template View
     url(r'^sessions/get_active$', ActiveSessionTemplateView.as_view(), name='active_sessions'),
-    #url(r'^sessions/session_log/(?P<pk>\d+)$', SessionLogDetailView.as_view(), name='session_log_view'),
     #web services
     url(r'^services/get_sessions$', get_sessions, name='get_sessions_ws'),
     url(r'^services/kill_session$', kill_session, name='kill_session_ws'),

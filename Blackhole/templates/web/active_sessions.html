@@ -34,8 +34,6 @@
                         .append($("<td>").append(this.source_ip))
                         .append($("<td>").append(new Date(this.login_date)))
                         .append("<td><a target='_blank' href='/web/services/session_log/download/" + this.id + "' class='btn btn-info btn-xs'><li class='glyphicon glyphicon-floppy-save'></li></a><a target='_blank' onclick=kill_session('" + this.real_user + "'," + this.id + "); class='btn btn-danger btn-xs'><span class='fa fa-close'></span></a></td>");
-                        //.append("<a target='_blank' onclick=kill_session(" + this.id + "); class='btn btn-warning btn-xs'><span class='fa fa-close'></span></a></td>");
-                    //table_line.append($("<td>").append("<a target='_blank' href='/web/sessions/session_log/" + this.id + "' class='btn btn-info btn-xs'><li class='glyphicon glyphicon-eye-open'></li></a>")
             sessions_div.append(table_line);
             });
         })
