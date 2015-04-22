@@ -139,7 +139,7 @@ class Window():
         return True
 
     def show_notification(self, message):
-        self.popup_launcher.message = str(message)
+        self.popup_launcher.message = message
         self.popup_launcher.open_pop_up()
 
     def start_ui(self):
@@ -169,7 +169,7 @@ class Window():
             self.blackhole.start_connection(sender)
         except Exception as e:
             #logger.error(e)
-            self.show_notification(e)
+            self.show_notification(e.message)
         finally:
             self.restore_screen()
 
