@@ -35,6 +35,7 @@ class Setup(object):
         self.current_user = getpass.getuser()
         self.pid = os.getpid()
         self.ppid = os.getppid()
+        self.banner = django_settings.BANNER
 
 
 class Blackhole(object):

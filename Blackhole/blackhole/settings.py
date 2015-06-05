@@ -20,6 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%*huo%nf#*6f$8l@^gt8a2i@il#=)8hud7ts+u$mv4mtg#u)12'
 
+
+# Add optionnal banner on top off footer.
+#BANNER = '/opt/BlackHole/banner.txt'
+
 # SECURITY WARNING: don't _run with debug turned on in production!
 DEBUG = False
 

@@ -2,6 +2,8 @@
 import logging
 import time
 import urwid
+import os
+import os.path
 from blackhole import get_version
 import blackhole
 from .popup import PopUpNotificationLauncher
@@ -69,6 +71,7 @@ class Window():
             ('focus', 'light green', 'black', 'standout'),  # Focus
             ('head', 'white', 'dark gray', 'standout'),  # Header
             ('foot', 'light gray', 'dark gray'),  # Footer Separator
+            ('banner', 'white', 'light gray'),
             ('key', 'light green', 'dark gray', 'bold'),
             ('title', 'white', 'black', 'bold'),
             ('environmentMark', 'dark blue', 'light gray', 'bold'),
@@ -128,7 +131,15 @@ class Window():
         popup_map = urwid.AttrMap(pop_pad, 'indicator')
         header_map = urwid.AttrMap(self.header_widget, 'head')
         self.header = urwid.Columns([header_map, popup_map])
-        self.view = urwid.Frame(urwid.AttrWrap(self.listbox, 'body'), header=self.header, footer=self.footer)
+        #banner
+        banner_f = self.blackhole.setup.banner
+        if os.path.isfile(banner_f) and os.access(banner_f, os.R_OK):
+            ban = open(banner_f, 'r').read()
+            #ban = f.read()
+        else:
+            ban = ""
+        map1 = urwid.AttrMap(urwid.Text(ban, align='center', wrap="clip"), 'banner')
+        self.view = urwid.Frame(urwid.AttrWrap(self.listbox, 'body'), self.header ,urwid.Pile([map1,self.footer]))
         self.screen = urwid.raw_display.Screen()
         self.loop = urwid.MainLoop(self.view, palette=self.palette, unhandled_input=self.handle_key, pop_ups=True, screen=self.screen)
 
